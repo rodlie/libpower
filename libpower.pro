@@ -14,7 +14,7 @@ VERSION = 1.0.0
 
 TEMPLATE = lib
 SOURCES += power.cpp
-HEADERS += power.h upower.h powermanagement.h
+HEADERS += power.h upower.h powermanagement.h screensaver.h
 
 # if embedded in lumina-extra
 exists(../../lumina-extra.pri) {
@@ -40,7 +40,7 @@ CONFIG(install_lib) {
     target_docs.path = $${DOCDIR}/libpower-$${VERSION}
     target_docs.files = LICENSE README.md
     target_inc.path = $${PREFIX}/include/libpower
-    target_inc.files = power.h powermanagement.h
+    target_inc.files = power.h powermanagement.h screensaver.h
 
     QMAKE_PKGCONFIG_NAME = $${TARGET}
     QMAKE_PKGCONFIG_DESCRIPTION = UPower library for Qt
