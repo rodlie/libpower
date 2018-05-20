@@ -18,7 +18,7 @@
 #include <QCoreApplication>
 #include <QDebug>
 
-#define SERVICE "org.freedesktop.PowerManagement"
+#define PM_SERVICE "org.freedesktop.PowerManagement"
 #define TIMEOUT 60000
 #define MAX_INHIBIT 18000
 

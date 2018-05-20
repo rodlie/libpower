@@ -19,11 +19,18 @@
 #include <QCoreApplication>
 
 #define XSCREENSAVER "xscreensaver-command -deactivate"
-#define TIMEOUT 30000
-#define MAX_INHIBIT 18000
+#define SS_TIMEOUT 30000
+#define SS_MAX_INHIBIT 18000
 
+#ifndef PM_SERVICE
 #define PM_SERVICE "org.freedesktop.PowerManagement"
+#endif
+#ifndef PM_PATH
 #define PM_PATH "/PowerManagement"
+#endif
+
+#define SS_SERVICE "org.freedesktop.ScreenSaver"
+#define SS_PATH "/ScreenSaver"
 
 class ScreenSaver : public QObject
 {
@@ -32,7 +39,7 @@ class ScreenSaver : public QObject
 public:
     explicit ScreenSaver()
     {
-        timer.setInterval(TIMEOUT);
+        timer.setInterval(SS_TIMEOUT);
         connect(&timer, SIGNAL(timeout()), this, SLOT(timeOut()));
         timer.start();
     }
@@ -64,7 +71,7 @@ private slots:
         QMapIterator<quint32, QTime> client(clients);
         while (client.hasNext()) {
             client.next();
-            if (client.value().secsTo(QTime::currentTime())>=MAX_INHIBIT) { clients.remove(client.key()); }
+            if (client.value().secsTo(QTime::currentTime())>=SS_MAX_INHIBIT) { clients.remove(client.key()); }
         }
     }
     bool canInhibit()
