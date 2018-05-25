@@ -84,7 +84,7 @@ private slots:
     {
         if (!QDBusConnection::sessionBus().isConnected()) {
             // DBus session has probably ended(?), so quit ...
-            qApp->quit();
+            //qApp->quit();
         }
     }
     void timeOut()
